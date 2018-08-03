@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {Navbar} from './components'
+import Test from './components/test'
+import Routes from './routes'
 
 class App extends Component {
   render() {
@@ -13,6 +16,14 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+
+        <div>
+          <Test />
+      <Navbar />
+      <Routes />
+    </div>
+
+
       </div>
     );
   }
