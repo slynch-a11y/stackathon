@@ -6,7 +6,7 @@ import axios from 'axios'
 const SET_CHORES = 'SET_CHORES'
 
 const initialState = {
-  choress: []
+  chores: []
 }
 
 export const setChores = chores => ({type: SET_CHORES, chores})
@@ -19,6 +19,7 @@ export const getChores = () => {
     try {
       const response = await axios.get('/api/chores');
       const chores = response.data;
+      console.log("GOTMYCHORES", chores)
       const action = setChores(chores);
       dispatch(action);
     }

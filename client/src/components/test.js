@@ -4,6 +4,9 @@ import {getChores} from '../store/chores'
 
 class Test extends React.Component {
 
+  componentDidMount(){
+    this.props.getChores()
+  }
   render(){
     console.log("TEST", this.props)
     return (
