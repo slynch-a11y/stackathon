@@ -10,8 +10,12 @@ class Test extends React.Component {
   render(){
     console.log("TEST", this.props)
     return (
-      <div>TESTING
-      </div>
+      <div><ul>{
+        this.props.chores.map(chore =>
+          <li key={chore.id}>{chore.description}</li>
+        )
+      }
+      </ul></div>
     )
   }
 
@@ -19,7 +23,7 @@ class Test extends React.Component {
 }
 const mapStateToProps = function(state) {
   return {
-    chores: state.chores
+    chores: state.chores.chores
   }
 }
 

@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 if (process.env.NODE_ENV !== 'production') require('../../../secrets')
-
 var twilio = require('twilio')
 var client = new twilio(
   process.env.TWILIO_ACCOUNT_SID,

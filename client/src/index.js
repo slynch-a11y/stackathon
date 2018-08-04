@@ -12,5 +12,5 @@ ReactDOM.render(<Provider store={store}>
   <Router history={history}>
     <App />
   </Router>
-</Provider>, document.getElementById('root'));
-registerServiceWorker();
+</Provider>, document.getElementById('root'))
+registerServiceWorker()

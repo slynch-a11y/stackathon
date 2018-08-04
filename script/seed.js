@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Chore} = require('../server/db/models')
+const {User, Chore, UserChores} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -12,10 +12,12 @@ async function seed() {
     const sarah = await User.create({name: 'Sarah', email: 'sarah@alum.rpi.edu', phoneNumber: '+2039062676', password: '123'})
 
 
-  const brushTeeth = await Chore.create({description: 'brush your teeth', hour: 20, isComplete: false, userId: 2})
-  const washDishes = await Chore.create({description: 'wash the dishes', hour: 20, isComplete: false, userId: 2})
+  const brushTeeth = await Chore.create({description: 'brush your teeth', hour: 8, isComplete: true})
+  const washDishes = await Chore.create({description: 'wash the dishes', hour: 8, isComplete: true})
 
-
+const sarah_brushTeeth = await UserChores.create({userId: 2, choreId: 1})
+const sarah_washDishes = await UserChores.create({userId: 2, choreId: 2})
+const henry_washDishes = await UserChores.create({userId: 1, choreId: 2})
 
   console.log(`seeded successfully`)
 }
