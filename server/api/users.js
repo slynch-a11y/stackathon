@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, UserChores} = require('../db/models')
+const {User, UserChores, Chore} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -29,6 +29,10 @@ router.put('/:userId/chores/:choreId', async( req, res, next ) => {
     }
   })
   const updatedChore = await chore[0].update(req.body)
+  console.log("UPDATEDCHORE", updatedChore.choreId)
+  const choreToUpdate = await Chore.findById(updatedChore.choreId)
+  //choreToUpdate.isComplete = true
+  await choreToUpdate.update({isComplete: true})
   res.status(202).json(updatedChore)
 }catch (err) {
   next(err)

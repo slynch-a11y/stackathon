@@ -35,13 +35,12 @@ export const getChores = (userId) => {
 };
 
 
-export const updateChore = (userId, choreId, history) => {
+export const updateChore = (userId, choreId, chore) => {
 return async (dispatch) => {
   try {
-    const {data} = await axios.put(`/api/${userId}/chores/${choreId}`)
+    const {data} = await axios.put(`/api/users/${userId}/chores/${choreId}`, chore)
     const action = editChore(data)
     dispatch(action)
-    history.push(`/mychores`)
   } catch (err) {
     console.log(err)
   }

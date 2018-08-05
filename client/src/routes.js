@@ -10,6 +10,7 @@ import AddChore from './components/AddChore'
 import Chores from './components/Chores'
 import MyPet from './components/MyPet'
 import MyChores from './components/MyChores'
+import HappyPet from './components/HappyPet'
 
 /**
  * COMPONENT
@@ -33,6 +34,8 @@ console.log("LOGGEDINPROPS", this.props)
             <Route path="/home" component={Welcome} />
             <Route path="/pets/:petId" component={MyPet} />
             <Route path="/mychores" component={MyChores} />
+            <Route path="/happyPet" component={HappyPet} />
+
             {isParent && (
               <Switch>
                 <Route exact path="/home" component={Welcome} />
