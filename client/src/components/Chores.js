@@ -21,14 +21,12 @@ class Chores extends React.Component {
 
 
   render(){
-    console.log("CHORES", this.props.children[0])
-    let child1 = this.props.children[0]
-    console.log("CHILD1", child1)
+
 
     return (
       <div>
-
-        <table>
+<h4>Let's add some chores!<AddChore /></h4>
+        <table className="table">
             <tbody>
               <tr>
                 <th>Child</th>
@@ -41,7 +39,9 @@ class Chores extends React.Component {
             this.props.children.map((child, index) => (
               <tr key={index}>
               <td>{child.name}</td>
-              <td>{this.props.choreObject[child.name].join(' ,  ')}</td>
+              <td>{this.props.choreObject[child.name].join(" ").split(",").map((chore, index)=>
+                <div key={index}>{chore}</div>
+              )}</td>
               </tr>
 
             )
@@ -56,7 +56,7 @@ class Chores extends React.Component {
 
             </tbody>
             </table>
-        <h4>Let's add some chores!<AddChore /></h4>
+
         </div>
     )
   }
@@ -70,16 +70,13 @@ for (let j=0; j<names.length; ++j){
   let currentName = names[j]
   obj[currentName] = []
 }
-console.log("MYOBJ", obj)
   for (let i=0; i<chores.length; ++i){
     let currentChildChore = chores[i]
-    console.log("CURRENTCHILDCHORE", currentChildChore)
     if (obj[currentChildChore.name]){
       obj[currentChildChore.name].push(currentChildChore.user_chores.map(chore => (
         chore.chore.description)))
     }
  }
-console.log("MYOBJJJJJ", obj)
 return obj
 }
 

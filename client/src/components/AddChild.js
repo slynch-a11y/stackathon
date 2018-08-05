@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { createChild } from '../store/child'
 import {me} from '../store/user'
 import { Redirect } from 'react-router-dom'
-
+import ChildAdded from './ChildAdded'
+import {addToast, removeToast} from '../store/toasts'
 
 class AddChild extends Component {
   constructor() {
@@ -118,6 +119,11 @@ this.props.findUser()
     const {name, email, password, phoneNumber} = this.state
 
     this.props.createChild({name, email, password, phoneNumber, parent: false, familyId: this.props.user.familyId, familyIdFinal: true})
+
+    this.props.addToast({
+			text: `${name} has been added to Chore Bunny!`
+		})
+		setTimeout(this.props.removeToast, 1500)
   }
 
   render() {
@@ -130,6 +136,7 @@ this.props.findUser()
             <input
               type="text"
               name="name"
+              className="form-control"
               onChange={this.handleChange}
               value={this.state.name}
               placeholder="Enter Name of Child"
@@ -147,6 +154,7 @@ this.props.findUser()
             <input
               type="text"
               name="email"
+              className="form-control"
               onChange={this.handleChange}
               value={this.state.email}
               placeholder="Enter Child's Email"
@@ -164,6 +172,7 @@ this.props.findUser()
             <input
               type="text"
               name="phoneNumber"
+              className="form-control"
               onChange={this.handleChange}
               value={this.state.phoneNumber}
               placeholder="Enter the Number for sending Text Messages"
@@ -181,6 +190,7 @@ this.props.findUser()
             <input
               type="text"
               name="password"
+              className="form-control"
               onChange={this.handleChange}
               value={this.state.password}
               placeholder="Enter the password for your child to use to log in"
@@ -206,11 +216,14 @@ this.props.findUser()
               type="submit"
               onClick={this.submit}
             >
-              Submit
+              Add Child
             </button>
           </div>
         </form>
-        <button onClick={this.handleClick}>Done Adding Children</button>
+        <button className="btn btn-secondary col md-4 center-blocks" onClick={this.handleClick}>Done Adding Children - Ready to Add Chores</button>
+        <p>
+        {this.props.toast.text ? <ChildAdded /> : null}
+        </p>
       </div>
     )
   }
@@ -218,14 +231,17 @@ this.props.findUser()
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    toast: state.toasts.childAdded
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     createChild: child => dispatch(createChild(child)),
-    findUser: () => dispatch(me())
+    findUser: () => dispatch(me()),
+    addToast: toast => dispatch(addToast(toast)),
+		removeToast: () => dispatch(removeToast())
   }
 }
 

@@ -96,10 +96,10 @@ Chores for the Day:
 
             {/* if user.familyIdFinal, skip this */}
               {this.renderRedirect()}
-        Let's get started!
-        You can add a child to start assigning chores to him/her!
-        <button type="button" onClick={this.handleClick}>
-                    Add Child
+
+        <p>You can add a child and start assigning chores to him/her!</p>
+        <button type="button" className="btn btn-secondary col md-4 center-blocks" onClick={this.handleClick}>
+                    Let's Get Started!
         </button>
 
 
@@ -110,7 +110,7 @@ Chores for the Day:
             <div>
 
             {/* if user.familyIdFinal, skip this */}
-              You've added your children.  Now you can add their chores.
+
               <Chores />
 
             </div>

@@ -77,7 +77,8 @@ this.props.getChildren(this.props.user.familyId)
     evt.preventDefault()
     //userId will be the selected child!!!!! (not this.props.user.id)
     this.props.createChore({description: this.state.description, hour: +this.state.completeBy, userId: this.state.userId})
-    this.props.getChores()
+    this.props.getChores(this.props.user.familyId)
+    window.location.reload()
   }
 
   render() {
@@ -89,11 +90,13 @@ this.props.getChildren(this.props.user.familyId)
             <label htmlFor="title" />
             <input
               type="text"
+              className="form-control"
               name="description"
               onChange={this.handleChange}
               value={this.state.description}
-              placeholder="Enter The Chore Description"
+
             />
+            <small id="description" className="form-text text-muted">Enter the description of the chore (ex. "Walk the dog").</small>
             {this.state.formErrors.description.length > 0 ? (
                 <p>
                   {this.state.description}
@@ -106,11 +109,12 @@ this.props.getChildren(this.props.user.familyId)
             <label htmlFor="completeBy" />
             <input
               type="text"
+              className="form-control"
               name="completeBy"
               onChange={this.handleChange}
               value={this.state.completeBy}
-              placeholder="Enter the hour at which the chore should be completed"
             />
+            <small id="completeBy" className="form-number text-muted">Enter the hour the chore should be completed (military time).</small>
             {this.state.formErrors.completeBy.length > 0 ? (
                 <p>
                   {this.state.completeBy}
@@ -121,7 +125,7 @@ this.props.getChildren(this.props.user.familyId)
               )}
 
  <label>Select Child to Assign Chore To</label>
-           <select name="userId" onChange={this.handleChange}>
+           <select name="userId" className="form-control" onChange={this.handleChange}>
              <option value="">--</option>
              {
                (this.props.children) ? this.props.children.map(child => (
@@ -140,7 +144,7 @@ this.props.getChildren(this.props.user.familyId)
               type="submit"
               onClick={this.submit}
             >
-              Submit
+              Add Chore
             </button>
           </div>
         </form>
@@ -162,7 +166,7 @@ const mapDispatchToProps = (dispatch) => {
     createChore: chore => dispatch(createChore(chore)),
     findUser: () => dispatch(me()),
     getChildren: (familyId) => dispatch(getChildren(familyId)),
-    getChores: () => dispatch(getChores())
+    getChores: (familyId) => dispatch(getChores(familyId))
   }
 }
 
