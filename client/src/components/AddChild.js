@@ -33,6 +33,7 @@ class AddChild extends Component {
     this.handleClick = this.handleClick.bind(this)
     this.setRedirect = this.setRedirect.bind(this)
     this.renderRedirect = this.renderRedirect.bind(this)
+    this.resetState = this.resetState.bind(this)
   }
 
   componentDidMount(){
@@ -53,6 +54,15 @@ this.props.findUser()
     evt.preventDefault()
    this.setRedirect()
 
+  }
+
+  resetState(evt){
+    this.setState({
+      name: '',
+      email: '',
+      phoneNumber: '',
+      password: ''
+    })
   }
 
   validateField(fieldName, value) {
@@ -122,7 +132,8 @@ this.props.findUser()
 
     this.props.addToast({
 			text: `${name} has been added to Chore Bunny!`
-		})
+    })
+    this.resetState()
 		setTimeout(this.props.removeToast, 1500)
   }
 

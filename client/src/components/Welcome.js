@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import Chores from './Chores'
 import AddChore from './AddChore'
 import {getFamilyId} from '../store/familyId'
@@ -9,6 +9,8 @@ import {me} from '../store/user'
 import {getChildren} from '../store/child'
 import PetSelect from './PetSelect'
 import MyChores from './MyChores'
+
+// import {getChores} from '../store/myChores'
 
 // import {getChores} from '../store/chores'
 // import {getFamilyId} from '../store/familyId'
@@ -38,6 +40,7 @@ class Welcome extends React.Component {
     this.props.getFamilyId()
     this.props.getUser()
     this.props.getChildren(this.props.familyId)
+    // this.props.getMyChores(this.props.user.id)
   }
 
   async handleClick(evt) {
@@ -68,11 +71,11 @@ class Welcome extends React.Component {
 {this.props.isParent===false && this.props.user.familyIdFinal && (
   <div>
 
-<p>
-  Welcome Back to Chore Bunny!
-Chores for the Day:
-</p>
+
+ <p> Welcome Back to Chore Bunny!
+Chores for the Day:</p>
 <MyChores />
+{/* <Link to='/mychores'>View My Chores</Link> */}
 
   </div>
 )}
@@ -138,7 +141,8 @@ const mapStateToProps = function(state) {
     isLoggedIn: !!state.user.id,
     isParent: state.user.parent,
     user: state.user,
-    children: state.child.children
+    children: state.child.children,
+    myChores: state.myChores.chores
   }
 }
 
@@ -147,7 +151,8 @@ const mapDispatchToProps = (dispatch) => {
     // getChores: () => dispatch(getChores()),
     getFamilyId: () => dispatch(getFamilyId()),
     getUser: () => dispatch(me()),
-    getChildren: (familyId) => dispatch(getChildren(familyId))
+    getChildren: (familyId) => dispatch(getChildren(familyId)),
+    // getMyChores: (id) => dispatch(getChores(id))
   }
 }
 

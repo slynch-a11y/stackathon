@@ -49,7 +49,7 @@ this.props.updateChore(this.props.user.id, +evt.target.value, {isComplete: true}
 
 
   render(){
-    console.log("MYCHORES", this.props.chores[0])
+    console.log("MYCHORES", this.props)
     console.log("MKYCHORESTATE", this.state)
     return (
       <div>
