@@ -96,7 +96,7 @@ this.props.getChildren(this.props.user.familyId)
               value={this.state.description}
 
             />
-            <small id="description" className="form-text text-muted">Enter the description of the chore (ex. "Walk the dog").</small>
+            <small id="description" className="form-text text-muted">enter the description of the chore (ex. "walk the dog")</small>
             {this.state.formErrors.description.length > 0 ? (
                 <p>
                   {this.state.description}
@@ -114,7 +114,7 @@ this.props.getChildren(this.props.user.familyId)
               onChange={this.handleChange}
               value={this.state.completeBy}
             />
-            <small id="completeBy" className="form-number text-muted">Enter the hour the chore should be completed (military time).</small>
+            <small id="completeBy" className="form-number text-muted">enter the hour the chore should be completed (military time)</small>
             {this.state.formErrors.completeBy.length > 0 ? (
                 <p>
                   {this.state.completeBy}
@@ -124,7 +124,7 @@ this.props.getChildren(this.props.user.familyId)
                 ''
               )}
 
- <label>Select Child to Assign Chore To</label>
+
            <select name="userId" className="form-control" onChange={this.handleChange}>
              <option value="">--</option>
              {
@@ -135,6 +135,7 @@ this.props.getChildren(this.props.user.familyId)
              )) : null
              }
            </select>
+           <small id="completeBy" className="form-number text-muted">select the child to assign the chore to</small>
             <button
             disabled={
               !this.state.description ||

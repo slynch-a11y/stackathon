@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import {me} from '../store/user'
 import {getChores} from '../store/myChores'
 import {getSinglePet} from '../store/myPet'
@@ -19,6 +19,7 @@ class HappyPet extends React.Component {
   componentDidMount(){
     this.props.getChores(this.props.user.id)
     this.props.getPet(this.props.user.id)
+
   }
   setRedirect() {
     this.setState({
@@ -32,7 +33,8 @@ class HappyPet extends React.Component {
   }
   handleClick(evt){
     evt.preventDefault()
-      this.props.history.push('/mychores')
+      this.setRedirect()
+      window.location.reload()
   }
 
   render(){
@@ -48,8 +50,9 @@ class HappyPet extends React.Component {
               type="submit"
               onClick={this.handleClick}
             >
-              Back to chores
+      Back to Chores
             </button>
+            {/* <Link to='/mychores'>Back to Chores</Link> */}
 </p>
       </div>
     )
