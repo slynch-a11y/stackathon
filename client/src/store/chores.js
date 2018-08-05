@@ -26,10 +26,10 @@ export const deleteChore = chore => ({
 /**
  * THUNK CREATORS
  */
-export const getChores = () => {
+export const getChores = (familyId) => {
   return async dispatch => {
     try {
-      const response = await axios.get('/api/chores');
+      const response = await axios.get(`/api/chores/${familyId}`);
       const chores = response.data;
       console.log("GOTMYCHORES", chores)
       const action = setChores(chores);
@@ -41,13 +41,13 @@ export const getChores = () => {
   };
 };
 
-export const createChore = (chore, history) => {
+export const createChore = (chore) => {
   return async (dispatch) => {
     try {
       const {data} = await axios.post('/api/chores', chore)
       const action = addChore(data)
       dispatch(action)
-      // history.push(`/chores/${data.id}`)
+    //  history.push(`/chores`)
     } catch (err) {
       console.log(err)
     }
@@ -60,7 +60,7 @@ return async (dispatch) => {
     const {data} = await axios.put(`/api/chores/${choreId}`, chore)
     const action = editChore(data)
     dispatch(action)
-    // history.push(`/chores/${choreId}`)
+    history.push(`/chores`)
   } catch (err) {
     console.log(err)
   }
@@ -73,7 +73,7 @@ return async (dispatch) => {
     const {data} = await axios.delete(`/api/chores/${choreId}`, choreId)
     const action = deleteChore(data)
     dispatch(action)
-    // history.push('/chores')
+    history.push('/chores')
   } catch (err) {
     console.log(err)
   }

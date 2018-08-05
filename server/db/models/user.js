@@ -12,10 +12,17 @@ const User = db.define('user', {
     allowNull: false
   },
   phoneNumber: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING
+    },
+  parent: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
   },
-  admin: {
+  familyId: {
+    type: Sequelize.INTEGER,
+    defaultValue: 1
+  },
+  familyIdFinal: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },

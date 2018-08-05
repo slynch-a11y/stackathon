@@ -1,17 +1,18 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Chore, UserChores} = require('../server/db/models')
+const {User, Chore, UserChores, Pet} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
 
-    const henry = await User.create({name: 'Henry', email: 'henrymlynch@icloud.com', phoneNumber: 'henrymlynch@icloud.com', password: '123'})
+    const henry = await User.create({name: 'Henry', email: 'henrymlynch@icloud.com', phoneNumber: 'henrymlynch@icloud.com', password: '123', parent: false})
     const sarah = await User.create({name: 'Sarah', email: 'sarah@alum.rpi.edu', phoneNumber: '+2039062676', password: '123'})
-
-
+    const sam = await User.create({name: 'Sam', email: 'sam@alum.rpi.edu', phoneNumber: '+2039062676', password: '123', familyId: 2})
+    const bunny = await Pet.create({name: 'Chester', userId: 1, image: "http://localhost:3000/bunny.png"})
+    const cat = await Pet.create({name: 'Sophia', userId: 1, image: "http://localhost:3000/cat.png"})
   const brushTeeth = await Chore.create({description: 'brush your teeth', hour: 8, isComplete: true})
   const washDishes = await Chore.create({description: 'wash the dishes', hour: 8, isComplete: true})
 
