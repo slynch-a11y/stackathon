@@ -4,10 +4,32 @@ import AddChore from './AddChore'
 import {getChores} from '../store/chores'
 import {getChildren} from '../store/child'
 import {me} from '../store/user'
+import { Redirect } from 'react-router-dom'
 
 class Chores extends React.Component {
   constructor(){
     super()
+    this.state = {
+      redirect: false
+    }
+    this.handleClick = this.handleClick.bind(this)
+    this.setRedirect = this.setRedirect.bind(this)
+    this.renderRedirect = this.renderRedirect.bind(this)
+  }
+  setRedirect() {
+    this.setState({
+      redirect: true
+    })
+  }
+  renderRedirect() {
+    if (this.state.redirect) {
+      return <Redirect to='/addchildren' />
+    }
+  }
+
+  handleClick(evt) {
+    evt.preventDefault()
+    this.setRedirect()
   }
 
 
@@ -25,8 +47,14 @@ class Chores extends React.Component {
 
     return (
       <div>
-<h4>Let's add some chores!<AddChore /></h4>
+        {this.renderRedirect()}
+        <button type="button" className="btn btn-secondary col md-4 center-blocks" onClick={this.handleClick}>
+                   Add Another Child
+        </button>
+        <p>
+<h4>Let's add some chores!<AddChore /></h4></p>
         <table className="table">
+
             <tbody>
               <tr>
                 <th>Child</th>
