@@ -11,8 +11,8 @@ async function seed() {
     const henry = await User.create({name: 'Henry', email: 'henrymlynch@icloud.com', phoneNumber: 'henrymlynch@icloud.com', password: '123', parent: false})
     const sarah = await User.create({name: 'Sarah', email: 'sarah@alum.rpi.edu', phoneNumber: '+2039062676', password: '123'})
     const sam = await User.create({name: 'Sam', email: 'sam@alum.rpi.edu', phoneNumber: '+2039062676', password: '123', familyId: 2})
-    const bunny = await Pet.create({name: 'Chester', userId: 1, image: "http://localhost:3000/bunny.png"})
-    const cat = await Pet.create({name: 'Sophia', userId: 1, image: "http://localhost:3000/cat.png"})
+    const bunny = await Pet.create({name: 'Chester', userId: 1, image: "http://localhost:3000/bunny.png", happyPetImage: "http://localhost:3000/happyBunny.gif"})
+    const cat = await Pet.create({name: 'Sophia', userId: null, image: "http://localhost:3000/cat.png", happyPetImage: "http://localhost:3000/happyCat.gif"})
   const brushTeeth = await Chore.create({description: 'brush your teeth', hour: 8, isComplete: true})
   const washDishes = await Chore.create({description: 'wash the dishes', hour: 8, isComplete: false})
 

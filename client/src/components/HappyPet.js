@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import {me} from '../store/user'
 import {getChores} from '../store/myChores'
+import {getSinglePet} from '../store/myPet'
 
 class HappyPet extends React.Component {
   constructor() {
@@ -17,6 +18,7 @@ class HappyPet extends React.Component {
 
   componentDidMount(){
     this.props.getChores(this.props.user.id)
+    this.props.getPet(this.props.user.id)
   }
   setRedirect() {
     this.setState({
@@ -34,11 +36,12 @@ class HappyPet extends React.Component {
   }
 
   render(){
+    console.log("WHATTTTTT", this.props)
     return (
       <div>
                         {this.renderRedirect()}
-
-        <img src='http://localhost:3000/bunny.png' />
+<p>{this.props.pet.name} is so excited!  Good job!</p>
+        <img src={this.props.pet.happyPetImage}/><p>
       <button
 
               className="btn btn-secondary col md-4 center-blocks"
@@ -47,7 +50,7 @@ class HappyPet extends React.Component {
             >
               Back to chores
             </button>
-
+</p>
       </div>
     )
   }
@@ -58,14 +61,16 @@ class HappyPet extends React.Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    chores: state.myChores.chores
+    chores: state.myChores.chores,
+    pet: state.myPet.myPet
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     findUser: () => dispatch(me()),
-    getChores: (id) => dispatch(getChores(id))
+    getChores: (id) => dispatch(getChores(id)),
+    getPet: (userId) => dispatch(getSinglePet(userId))
 
   }
 }

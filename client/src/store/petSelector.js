@@ -31,7 +31,23 @@ export const getPets = () => {
   }
 }
 
-export const getSinglePet = (petId) => {
+//get the single pet by userId
+export const getSinglePet = (userId) => {
+  return async dispatch => {
+    try {
+      const response = await axios.get(`/api/pets/users/${userId}`);
+      const pet = response.data;
+
+      const action = addPet(pet[0]);
+      dispatch(action);
+    }
+    catch (error){
+      console.log(error)
+    }
+  }
+}
+
+export const getInitialSinglePet = (petId) => {
   return async dispatch => {
     try {
       const response = await axios.get(`/api/pets/${petId}`);

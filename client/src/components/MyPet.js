@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import {me} from '../store/user'
-import {getSinglePet, editPet} from '../store/petSelector'
+import {getInitialSinglePet, editPet} from '../store/petSelector'
+import {getChores} from '../store/myChores'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
@@ -44,6 +45,7 @@ class MyPet extends React.Component {
     this.props.updatePet({name: this.state.name, userId: this.props.user.id, used: true}, this.props.pet.id)
     try {
       await axios.put(`/api/users/${this.props.user.id}`, {familyIdFinal: true})
+      this.props.getChores(this.props.user.id)
       this.setRedirect()
     }catch (error){
          console.log(error)
@@ -93,16 +95,17 @@ class MyPet extends React.Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    pet: state.petSelector.singlePet
+    pet: state.petSelector.singlePet,
+    chores: state.myChores.chores
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     findUser: () => dispatch(me()),
-    getSinglePet: (id) => dispatch(getSinglePet(id)),
-    updatePet: (pet, petId) => dispatch(editPet(pet, petId))
-
+    getSinglePet: (id) => dispatch(getInitialSinglePet(id)),
+    updatePet: (pet, petId) => dispatch(editPet(pet, petId)),
+    getChores: (id) => dispatch(getChores(id))
   }
 }
 
