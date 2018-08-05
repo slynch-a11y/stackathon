@@ -4,7 +4,6 @@ import AddChore from './AddChore'
 import {getChores} from '../store/chores'
 import {getChildren} from '../store/child'
 import {me} from '../store/user'
-// import {arrayOfChores} from '../store/helper'
 
 class Chores extends React.Component {
   constructor(){

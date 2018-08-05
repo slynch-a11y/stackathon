@@ -7,8 +7,9 @@ import chores from './chores'
 import child from './child'
 import familyId from './familyId'
 import petSelector from './petSelector'
+import myChores from './myChores'
 
-const reducer = combineReducers({user, chores, child, familyId, petSelector})
+const reducer = combineReducers({user, chores, child, familyId, petSelector, myChores})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
@@ -20,3 +21,4 @@ export * from './chores'
 export * from './child'
 export * from './familyId'
 export * from './petSelector'
+export * from './myChores'

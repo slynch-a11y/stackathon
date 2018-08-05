@@ -32,11 +32,14 @@ class PetSelect extends React.Component {
 
 }
 
-
+function findPets(petArray){
+  let foundPets = petArray.filter(pet => pet.used === false)
+  return foundPets
+}
 
 const mapStateToProps = function(state) {
   return {
-    pets: state.petSelector.pets
+    pets: findPets(state.petSelector.pets)
   }
 }
 

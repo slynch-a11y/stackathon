@@ -30,17 +30,26 @@ router.get('/:familyId', async (req, res, next) => {
   }
 })
 
-router.get('/:choreId', async (req, res, next) => {
+router.get('/users/:userId', async (req, res, next) => {
   try {
-    console.log('finding a single chore')
-    const id = req.params.choreId
-    const chore = await Chore.findById(id)
-    if (!chore) {
-      const err = new Error('Chore not found!')
+//get chores for individual users
+    const id = req.params.userId
+    const chores = await UserChores.findAll({
+      where: {
+        userId: id
+      },
+      include: [
+        {
+          model: Chore
+        }
+      ]}
+      )
+    if (!id) {
+      const err = new Error('User not found!')
       err.status = 404
       return next(err)
     }
-    res.json(chore)
+    res.json(chores)
   } catch (err) {
     next(err)
   }

@@ -12,6 +12,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:petId', async (req, res, next) => {
+  console.log("PETID", req.params.petId)
+  try {
+
+    const pet = await Pet.findById(req.params.petId)
+    res.json(pet)
+  } catch (err) {
+    next(err)
+  }
+})
+
 
 router.put('/:petId', async (req, res, next) => {
   try {
