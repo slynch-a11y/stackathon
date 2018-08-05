@@ -21,11 +21,10 @@ export const editChore = chore => ({type: EDIT_CHORE, chore})
 export const getChores = (userId) => {
   return async dispatch => {
     try {
-      console.log("CHORE????")
       const response = await axios.get(`/api/chores/users/${userId}`);
       const chores = response.data;
-      console.log("GOTMYYYYYCHORES", chores)
-      const action = setChores(chores);
+      let completed = chores.filter(chore => chore.chore.isComplete===false)
+      const action = setChores(completed);
       dispatch(action);
     }
     catch (error){

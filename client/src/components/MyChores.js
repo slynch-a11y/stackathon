@@ -54,7 +54,7 @@ this.props.updateChore(this.props.user.id, +evt.target.value, {isComplete: true}
       <div>
                 {this.renderRedirect()}
 {
-  (this.props.chores) ? (
+  (this.props.chores.length) ? (
 
 
           this.props.chores.map(chore => (
@@ -81,6 +81,7 @@ this.props.updateChore(this.props.user.id, +evt.target.value, {isComplete: true}
 
 
 }
+
 
 
 const mapStateToProps = (state) => {
