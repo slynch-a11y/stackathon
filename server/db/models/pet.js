@@ -8,6 +8,10 @@ const Pet = db.define('pet', {
   image: {
     type: Sequelize.STRING,
     defaultValue: "http://localhost:3000/bunny.png"
+  },
+  used: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 

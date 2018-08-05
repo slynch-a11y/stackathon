@@ -121,7 +121,6 @@ this.props.findUser()
   }
 
   render() {
-    console.log("USER", this.props)
     return (
       <div>
         {this.renderRedirect()}
@@ -143,7 +142,6 @@ this.props.findUser()
               ) : (
                 ''
               )}
-            {/* <small id="title" className="form-text text-muted" /> */}
 
             <label htmlFor="email" />
             <input
@@ -161,7 +159,6 @@ this.props.findUser()
               ) : (
                 ''
               )}
-            {/* <small id="description" className="form-text text-muted" /> */}
 
             <label htmlFor="phoneNumber" />
             <input
@@ -179,7 +176,6 @@ this.props.findUser()
               ) : (
                 ''
               )}
-            {/* <small id="price" className="form-text text-muted" /> */}
 
             <label htmlFor="password" />
             <input
@@ -197,7 +193,6 @@ this.props.findUser()
               ) : (
                 ''
               )}
-            {/* <small id="inventory" className="form-text text-muted" /> */}
 
 
             <button

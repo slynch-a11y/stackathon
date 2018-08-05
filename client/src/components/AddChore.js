@@ -102,7 +102,6 @@ this.props.getChildren(this.props.user.familyId)
               ) : (
                 ''
               )}
-            {/* <small id="title" className="form-text text-muted" /> */}
 
             <label htmlFor="completeBy" />
             <input

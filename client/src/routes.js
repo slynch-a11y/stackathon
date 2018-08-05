@@ -8,6 +8,8 @@ import Welcome from './components/Welcome'
 import AddChild from './components/AddChild'
 import AddChore from './components/AddChore'
 import Chores from './components/Chores'
+import MyPet from './components/MyPet'
+import MyChores from './components/MyChores'
 
 /**
  * COMPONENT
@@ -29,6 +31,8 @@ console.log("LOGGEDINPROPS", this.props)
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={Welcome} />
+            <Route path="/pets/:petId" component={MyPet} />
+            <Route path="/mychores" component={MyChores} />
             {isParent && (
               <Switch>
                 <Route exact path="/home" component={Welcome} />
