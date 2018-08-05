@@ -31,6 +31,7 @@ class MyChores extends React.Component {
 
   componentDidMount(){
     //get petId from url
+    this.props.findUser()
     this.props.getChores(this.props.user.id)
   }
 
@@ -39,7 +40,7 @@ class MyChores extends React.Component {
     //update chore to complete
 this.props.updateChore(this.props.user.id, +evt.target.value, {isComplete: true})
     //redirect to happy bunny page
-    this.props.getChores(this.props.user.id)
+    // this.props.getChores(this.props.user.id)
 
     this.setRedirect()
 
@@ -65,7 +66,7 @@ this.props.updateChore(this.props.user.id, +evt.target.value, {isComplete: true}
         <input type="radio" value={chore.chore.id}
                       checked={this.state.selectedOption === 'chore1'}
                       onChange={this.handleOptionChange} />
-        {chore.chore.description}
+        {chore.chore.description} (by: {chore.chore.hour}:00)
       </label>
     </div>
 

@@ -8,6 +8,7 @@ import {getFamilyId} from '../store/familyId'
 import {me} from '../store/user'
 import {getChildren} from '../store/child'
 import PetSelect from './PetSelect'
+import MyChores from './MyChores'
 
 // import {getChores} from '../store/chores'
 // import {getFamilyId} from '../store/familyId'
@@ -64,10 +65,21 @@ class Welcome extends React.Component {
           {/* Shown after you log in */}
 
 
-          {this.props.isParent===false && (
+{this.props.isParent===false && this.props.user.familyIdFinal && (
+  <div>
+
+<p>
+  Welcome Back to Chore Bunny!
+Chores for the Day:
+</p>
+<MyChores />
+
+  </div>
+)}
+
+          {this.props.isParent===false && this.props.user.familyIdFinal===false && (
             <div>
 
-            {/* if user.familyIdFinal, skip this */}
 
             Welcome to Chore Bunny!
           Start by selecting your helper pet:
@@ -75,6 +87,9 @@ class Welcome extends React.Component {
 
             </div>
           )}
+
+
+
 
           {this.props.isParent && this.props.user.familyIdFinal===false && (
             <div>

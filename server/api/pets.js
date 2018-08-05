@@ -12,8 +12,22 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//get pet by userId
+router.get('/users/:userId', async (req, res, next) => {
+  try {
+
+    const pet = await Pet.findAll({
+      where: {
+        userId: req.params.userId
+      }
+    })
+    res.json(pet)
+  } catch (err) {
+    next(err)
+  }
+})
+//get pet by petId
 router.get('/:petId', async (req, res, next) => {
-  console.log("PETID", req.params.petId)
   try {
 
     const pet = await Pet.findById(req.params.petId)

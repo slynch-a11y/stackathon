@@ -12,6 +12,9 @@ const Pet = db.define('pet', {
   used: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  happyPetImage: {
+    type: Sequelize.STRING
   }
 })
 
