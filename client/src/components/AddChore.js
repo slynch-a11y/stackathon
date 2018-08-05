@@ -77,7 +77,8 @@ this.props.getChildren(this.props.user.familyId)
     evt.preventDefault()
     //userId will be the selected child!!!!! (not this.props.user.id)
     this.props.createChore({description: this.state.description, hour: +this.state.completeBy, userId: this.state.userId})
-    this.props.getChores()
+    this.props.getChores(this.props.user.familyId)
+    window.location.reload()
   }
 
   render() {
@@ -162,7 +163,7 @@ const mapDispatchToProps = (dispatch) => {
     createChore: chore => dispatch(createChore(chore)),
     findUser: () => dispatch(me()),
     getChildren: (familyId) => dispatch(getChildren(familyId)),
-    getChores: () => dispatch(getChores())
+    getChores: (familyId) => dispatch(getChores(familyId))
   }
 }
 

@@ -21,7 +21,7 @@ class Chores extends React.Component {
 
 
   render(){
-    console.log("CHORES", this.props.children[0])
+    console.log("CHORES", this.props.children)
     let child1 = this.props.children[0]
     console.log("CHILD1", child1)
 
@@ -41,7 +41,9 @@ class Chores extends React.Component {
             this.props.children.map((child, index) => (
               <tr key={index}>
               <td>{child.name}</td>
-              <td>{this.props.choreObject[child.name].join(' ,  ')}</td>
+              <td>{this.props.choreObject[child.name].join(" ").split(",").map((chore, index)=>
+                <div key={index}>{chore}</div>
+              )}</td>
               </tr>
 
             )
