@@ -3,21 +3,12 @@ const Sequelize = require('sequelize')
 
 const Pet = db.define('pet', {
   name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    type: Sequelize.STRING
   },
   image: {
     type: Sequelize.STRING,
     defaultValue: "http://localhost:3000/bunny.png"
-  },
-  // hooks: {
-  //   beforeCreate: pet => {
-  //     pet.name = `${pet.name[0].toUpperCase()}${pet.name.slice(1)}`
-  //   }
-  // }
+  }
 })
 
 

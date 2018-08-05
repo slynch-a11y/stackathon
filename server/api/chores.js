@@ -1,18 +1,30 @@
 const router = require('express').Router()
-const {Chore, UserChores} = require('../db/models')
+const {Chore, UserChores, User} = require('../db/models')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+router.get('/:familyId', async (req, res, next) => {
   try {
-    console.log('getting all chores')
-    const chores = await Chore.findAll({
+    if(req.user){
+    const chores = await User.findAll({
+      where: {
+        familyId: req.params.familyId,
+            parent: false
+      },
       include: [
         {
-          model: UserChores
+
+          model: UserChores,
+          include: [
+            {
+              model: Chore
+            }
+          ]
         }
       ]}
       )
     res.json(chores)
+    }
+
   } catch (err) {
     next(err)
   }
