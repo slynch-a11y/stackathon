@@ -4,7 +4,7 @@ import {me} from '../store/user'
 import {getMyChores, updateChore} from '../store/myChores'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-
+import {getSinglePet} from '../store/petSelector'
 
 class MyChores extends React.Component {
   constructor() {
@@ -33,6 +33,7 @@ class MyChores extends React.Component {
     //get petId from url
     this.props.findUser()
     this.props.getChores(this.props.user.id)
+    this.props.getPet(this.props.user.id)
   }
 
   handleOptionChange(evt) {
@@ -74,7 +75,9 @@ this.props.updateChore(this.props.user.id, +evt.target.value, {isComplete: true}
   </div>
           ))
 
-      ) : <div>You have no chores! Yay!</div>
+      ) : <div><p>You have no chores! Yay!</p>
+        <img src={this.props.pet.happyPetImage}/>
+      </div>
     }
       </div>
     )
@@ -88,7 +91,8 @@ this.props.updateChore(this.props.user.id, +evt.target.value, {isComplete: true}
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    chores: state.myChores.chores
+    chores: state.myChores.chores,
+    pet: state.myPet.myPet
   }
 }
 
@@ -96,7 +100,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     findUser: () => dispatch(me()),
     getChores: (id) => dispatch(getMyChores(id)),
-    updateChore: (userId, choreId, chore) => dispatch(updateChore(userId, choreId, chore))
+    updateChore: (userId, choreId, chore) => dispatch(updateChore(userId, choreId, chore)),
+    getPet: (userId) => dispatch(getSinglePet(userId))
 
   }
 }
