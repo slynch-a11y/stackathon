@@ -44,7 +44,7 @@ router.get('/users/:userId', async (req, res, next) => {
         }
       ]}
       )
-    if (!id) {
+    if (!chores.length) {
       const err = new Error('User not found!')
       err.status = 404
       return next(err)

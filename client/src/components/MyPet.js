@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import {me} from '../store/user'
 import {getInitialSinglePet, editPet} from '../store/petSelector'
-import {getChores} from '../store/myChores'
+import {getMyChores} from '../store/myChores'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
@@ -47,6 +47,7 @@ class MyPet extends React.Component {
       await axios.put(`/api/users/${this.props.user.id}`, {familyIdFinal: true})
       this.props.getChores(this.props.user.id)
       this.setRedirect()
+      window.location.reload()
     }catch (error){
          console.log(error)
        }
@@ -105,7 +106,7 @@ const mapDispatchToProps = (dispatch) => {
     findUser: () => dispatch(me()),
     getSinglePet: (id) => dispatch(getInitialSinglePet(id)),
     updatePet: (pet, petId) => dispatch(editPet(pet, petId)),
-    getChores: (id) => dispatch(getChores(id))
+    getChores: (id) => dispatch(getMyChores(id))
   }
 }
 

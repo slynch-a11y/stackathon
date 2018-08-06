@@ -18,12 +18,13 @@ export const editChore = chore => ({type: EDIT_CHORE, chore})
 /**
  * THUNK CREATORS
  */
-export const getChores = (userId) => {
+export const getMyChores = (userId) => {
   return async dispatch => {
     try {
       const response = await axios.get(`/api/chores/users/${userId}`);
       const chores = response.data;
       let completed = chores.filter(chore => chore.chore.isComplete===false)
+      console.log("COMPLETED", completed)
       const action = setChores(completed);
       dispatch(action);
     }

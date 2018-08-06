@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import {me} from '../store/user'
-import {getChores, updateChore} from '../store/myChores'
+import {getMyChores, updateChore} from '../store/myChores'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
@@ -40,7 +40,7 @@ class MyChores extends React.Component {
     //update chore to complete
 this.props.updateChore(this.props.user.id, +evt.target.value, {isComplete: true})
     //redirect to happy bunny page
-    // this.props.getChores(this.props.user.id)
+    //this.props.getChores(this.props.user.id)
 
     this.setRedirect()
 
@@ -59,11 +59,11 @@ this.props.updateChore(this.props.user.id, +evt.target.value, {isComplete: true}
 
 
           this.props.chores.map(chore => (
-            <div key={chore.chore.id}>
+            <div key={chore.choreId}>
                    <form>
     <div className="radio">
       <label>
-        <input type="radio" value={chore.chore.id}
+        <input type="radio" value={chore.choreId}
                       checked={this.state.selectedOption === 'chore1'}
                       onChange={this.handleOptionChange} />
         {chore.chore.description} (by: {chore.chore.hour}:00)
@@ -95,11 +95,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     findUser: () => dispatch(me()),
-    getChores: (id) => dispatch(getChores(id)),
+    getChores: (id) => dispatch(getMyChores(id)),
     updateChore: (userId, choreId, chore) => dispatch(updateChore(userId, choreId, chore))
 
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyChores)
+
+
 
