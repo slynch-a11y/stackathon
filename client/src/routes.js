@@ -18,6 +18,7 @@ import HappyPet from './components/HappyPet'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    // this.props.getChores(this.props.user.id)
   }
 
   render() {
@@ -63,7 +64,9 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
-    isParent: state.user.parent
+    isParent: state.user.parent,
+    user: state.user,
+    mychores: state.myChores.chores
   }
 }
 
@@ -71,9 +74,11 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
-      dispatch(getChores())
+      // dispatch(getChores())
 
-    }
+    },
+    // getChores: (id) => dispatch(getMyChores(id))
+
   }
 }
 

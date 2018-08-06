@@ -10,7 +10,7 @@ import {getChildren} from '../store/child'
 import PetSelect from './PetSelect'
 import MyChores from './MyChores'
 
-// import {getChores} from '../store/myChores'
+import {getMyChores} from '../store/myChores'
 
 // import {getChores} from '../store/chores'
 // import {getFamilyId} from '../store/familyId'
@@ -72,8 +72,8 @@ class Welcome extends React.Component {
   <div>
 
 
- <p> Welcome Back to Chore Bunny!
-Chores for the Day:</p>
+ <h4> Welcome Back to Chore Bunny!
+</h4>
 <MyChores />
 {/* <Link to='/mychores'>View My Chores</Link> */}
 
@@ -152,7 +152,7 @@ const mapDispatchToProps = (dispatch) => {
     getFamilyId: () => dispatch(getFamilyId()),
     getUser: () => dispatch(me()),
     getChildren: (familyId) => dispatch(getChildren(familyId)),
-    // getMyChores: (id) => dispatch(getChores(id))
+    getMyChores: (id) => dispatch(getMyChores(id))
   }
 }
 

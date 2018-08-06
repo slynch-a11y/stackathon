@@ -4,6 +4,7 @@ import AddChore from './AddChore'
 import {me} from '../store/user'
 import {getPets} from '../store/petSelector'
 import { Link } from 'react-router-dom'
+import {getMyChores} from '../store/myChores'
 
 
 class PetSelect extends React.Component {
@@ -14,6 +15,7 @@ class PetSelect extends React.Component {
 
   componentDidMount(){
     this.props.getPets()
+    this.props.getMyChores(this.props.user.id)
   }
 
 
@@ -39,13 +41,16 @@ function findPets(petArray){
 
 const mapStateToProps = function(state) {
   return {
-    pets: findPets(state.petSelector.pets)
+    pets: findPets(state.petSelector.pets),
+    myChores: state.myChores.chores,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPets: () => dispatch(getPets())
+    getPets: () => dispatch(getPets()),
+    getMyChores: (id) => dispatch(getMyChores(id))
   }
 }
 

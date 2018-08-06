@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom'
 import {me} from '../store/user'
-import {getChores} from '../store/myChores'
+import {getMyChores} from '../store/myChores'
 import {getSinglePet} from '../store/myPet'
 
 class HappyPet extends React.Component {
@@ -72,7 +72,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     findUser: () => dispatch(me()),
-    getChores: (id) => dispatch(getChores(id)),
+    getChores: (id) => dispatch(getMyChores(id)),
     getPet: (userId) => dispatch(getSinglePet(userId))
 
   }
