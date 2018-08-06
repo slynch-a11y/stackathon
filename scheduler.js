@@ -2,7 +2,26 @@
 const CronJob = require('cron').CronJob
 const notificationFunction = require('./notificationFunction')
 const moment = require('moment')
+const Chore = require('./server/db/models/chore')
 
+//reset chores to incomplete at midnight every night
+var resetChores = new CronJob({
+  cronTime: '* 0 * * *',
+  onTick: async function(){
+    let chores = await Chore.findAll({
+      where: {
+        isComplete: true,
+      }
+    })
+    chores.forEach(chore => {
+      chore.resetIsComplete()
+  })
+},
+  start: true,
+  timeZone: 'America/New_York'
+})
+
+//send text messages if chore is incomplete by time due
 var testJob = new CronJob({
   cronTime: '* * * * *',
   onTick: function() {

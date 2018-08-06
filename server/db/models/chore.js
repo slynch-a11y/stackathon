@@ -32,4 +32,10 @@ Chore.prototype.sendNotifications = function() {
     .done()
 }
 
+Chore.prototype.resetIsComplete = function(){
+  console.log("RESETTING ISCOMPLETE")
+    this.isComplete = false
+  }
+
+
 module.exports = Chore

@@ -47,7 +47,7 @@ class MyPet extends React.Component {
       await axios.put(`/api/users/${this.props.user.id}`, {familyIdFinal: true})
       this.props.getChores(this.props.user.id)
       this.setRedirect()
-      window.location.reload()
+      // window.location.reload()
     }catch (error){
          console.log(error)
        }
