@@ -1,7 +1,7 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
-import {composeWithDevTools} from 'redux-devtools-extension'
+// import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import chores from './chores'
 import child from './child'
@@ -12,8 +12,7 @@ import myPet from './myPet'
 import toasts from './toasts'
 
 const reducer = combineReducers({user, chores, child, familyId, petSelector, myChores, myPet, toasts})
-const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
+const middleware = (applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
 const store = createStore(reducer, middleware)
 
