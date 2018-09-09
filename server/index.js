@@ -77,16 +77,33 @@ app.use(express.static(path.join(__dirname, 'client/build')));
     app.use(express.static('client/build'));
   }
 
-  // any remaining requests with an extension (.js, .css, etc.) send 404
-  app.use((req, res, next) => {
-    if (path.extname(req.path).length) {
-      const err = new Error('Not found')
-      err.status = 404
-      next(err)
-    } else {
-      next()
-    }
-  })
+	app.use((req, res, next) => {
+		if (path.extname(req.path).length) {
+			const err = new Error('Not found')
+			err.status = 404
+			next(err)
+		} else {
+			res.header('Access-Control-Allow-Origin', '*')
+			res.header(
+				'Access-Control-Allow-Headers',
+				'Origin, X-Requested-With, Content-Type, Accept'
+			)
+			res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+			res.header('Access-Control-Request-Method: GET')
+			next()
+		}
+	})
+
+  // // any remaining requests with an extension (.js, .css, etc.) send 404
+  // app.use((req, res, next) => {
+  //   if (path.extname(req.path).length) {
+  //     const err = new Error('Not found')
+  //     err.status = 404
+  //     next(err)
+  //   } else {
+  //     next()
+  //   }
+  // })
 
   // sends index.html
   app.use('*', (req, res) => {
