@@ -17,7 +17,8 @@
     "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
     "postinstall": "touch secrets.js",
     "seed": "node script/seed.js",
-    "start": "nodemon server -e html,js,scss --ignore public --ignore client",
+    "server": "node server/index.js",
+    "start": "concurrently \"npm run server\" \"cd client && npm start\"",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
     "concurrently": "concurrently \"npm run start\" \"cd client && npm start\"",
     "finalbuild":
