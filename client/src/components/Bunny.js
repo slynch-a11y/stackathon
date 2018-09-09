@@ -6,7 +6,7 @@ class Bunny extends React.Component {
 
   render(){
     return (
-      <div><img src='http://localhost:3000/chorebunny.png' /></div>
+      <div><img src='http://localhost:5000/chorebunny.png' /></div>
     )
   }
 

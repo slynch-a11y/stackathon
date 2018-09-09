@@ -73,6 +73,9 @@ const createApp = () => {
 app.use(express.static(path.join(__dirname, 'client/build')));
   // static file-serving middleware
   //app.use(express.static(path.join(__dirname, '..', 'public')))
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+  }
 
   // any remaining requests with an extension (.js, .css, etc.) send 404
   app.use((req, res, next) => {
