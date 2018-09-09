@@ -13,12 +13,12 @@ async function seed() {
     const sam = await User.create({name: 'Sam', email: 'sam@alum.rpi.edu', phoneNumber: '+2039062676', password: '123', familyId: 2})
     const bunny = await Pet.create({name: 'Chester', userId: 1, image: "http://localhost:3000/bunny.png", happyPetImage: "http://localhost:3000/happyBunny.gif"})
     const cat = await Pet.create({name: 'Sophia', userId: null, image: "http://localhost:3000/cat.png", happyPetImage: "http://localhost:3000/happyCat.gif"})
-  const brushTeeth = await Chore.create({description: 'brush your teeth', hour: 8, isComplete: true})
-  const washDishes = await Chore.create({description: 'wash the dishes', hour: 8, isComplete: true})
+//   const brushTeeth = await Chore.create({description: 'brush your teeth', hour: 8, isComplete: true})
+//   const washDishes = await Chore.create({description: 'wash the dishes', hour: 8, isComplete: true})
 
-const sarah_brushTeeth = await UserChores.create({userId: 2, choreId: 1})
-const sarah_washDishes = await UserChores.create({userId: 2, choreId: 2})
-const henry_washDishes = await UserChores.create({userId: 1, choreId: 2})
+// const sarah_brushTeeth = await UserChores.create({userId: 2, choreId: 1})
+// const sarah_washDishes = await UserChores.create({userId: 2, choreId: 2})
+// const henry_washDishes = await UserChores.create({userId: 1, choreId: 2})
 
   console.log(`seeded successfully`)
 }
