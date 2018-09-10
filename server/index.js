@@ -68,8 +68,6 @@ const createApp = () => {
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
-
-
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
   // static file-serving middleware
