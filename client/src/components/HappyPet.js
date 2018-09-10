@@ -42,8 +42,8 @@ class HappyPet extends React.Component {
     return (
       <div>
                         {this.renderRedirect()}
-<p>{this.props.pet.name} is so excited!  Good job!</p>
-        <img src={this.props.pet.happyPetImage}/><p>
+<p>{this.props.user.petName} is so excited!  Good job!</p>
+        <img src={this.props.user.happyPetImage}/><p>
       <button
 
               className="btn btn-secondary col md-4 center-blocks"
