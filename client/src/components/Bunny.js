@@ -3,7 +3,6 @@ import React from 'react'
 
 class Bunny extends React.Component {
 
-
   render(){
     return (
       <div><img src='https://chore-bunny.herokuapp.com/chorebunny.png' /></div>
@@ -12,7 +11,6 @@ class Bunny extends React.Component {
 
 
 }
-
 
 export default Bunny
 
