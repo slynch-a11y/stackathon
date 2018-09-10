@@ -8,7 +8,6 @@ async function seed() {
   console.log('db synced!')
 
 
-
     const henry = await User.create({name: 'Henry', email: 'henrymlynch@icloud.com', phoneNumber: 'henrymlynch@icloud.com', password: '123', parent: false})
     const sarah = await User.create({name: 'Sarah', email: 'sarah@alum.rpi.edu', phoneNumber: '+2039062676', password: '123'})
     const sam = await User.create({name: 'Sam', email: 'sam@alum.rpi.edu', phoneNumber: '+2039062676', password: '123', familyId: 2})
