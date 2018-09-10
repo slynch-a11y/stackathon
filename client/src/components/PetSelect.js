@@ -25,9 +25,12 @@ class PetSelect extends React.Component {
     return (
       <div>
 
-        {
+<Link to={`/pets/1`}><img width='250' src='/bunny.png'/></Link>
+<Link to={`/pets/2`}><img width='250' src='/cat.png'/></Link>
+
+        {/* {
           this.props.pets.map(pet => <div key={pet.id}><Link to={`/pets/${pet.id}`}><img width='250' src={pet.image}/></Link></div>)
-        }
+        } */}
         </div>
     )
   }

@@ -34,6 +34,7 @@ class MyPet extends React.Component {
   componentDidMount(){
     //get petId from url
     this.props.getSinglePet(this.props.match.params.petId)
+
   }
 
   handleChange(evt) {
@@ -42,9 +43,17 @@ class MyPet extends React.Component {
 
   async handleSubmit(evt) {
     evt.preventDefault()
-    this.props.updatePet({name: this.state.name, userId: this.props.user.id, used: true}, this.props.pet.id)
+    //we want to update the user instead with the this.state.name and the image
+    //if this.props.match.params.1 === bunny, else === cat
+    //get rid of this line:
+    // this.props.updatePet({name: this.state.name, userId: this.props.user.id, used: true}, this.props.pet.id)
     try {
-      await axios.put(`/api/users/${this.props.user.id}`, {familyIdFinal: true})
+      if (this.props.match.params.petId === 1){
+        await axios.put(`/api/users/${this.props.user.id}`, {familyIdFinal: true, petName: this.state.name, petImage: "https://chore-bunny.herokuapp.com/bunny.png", happyPetImage: "https://chore-bunny.herokuapp.com/happyBunny.gif"})
+      } else {
+        await axios.put(`/api/users/${this.props.user.id}`, {familyIdFinal: true, petName: this.state.name, petImage: "https://chore-bunny.herokuapp.com/cat.png", happyPetImage: "https://chore-bunny.herokuapp.com/happyCat.gif"})
+      }
+
       this.props.getChores(this.props.user.id)
       this.setRedirect()
       window.location.reload()
