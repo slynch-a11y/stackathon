@@ -93,7 +93,12 @@ class MyPet extends React.Component {
             </button>
           </div>
         </form>
-        <img src={this.props.pet.image} />
+        {
+          (this.props.match.params.petId === 1) ?
+            <img src="https://chore-bunny.herokuapp.com/bunny.png" /> :
+            <img src="https://chore-bunny.herokuapp.com/cat.png" />
+        }
+
       </div>
     )
   }
